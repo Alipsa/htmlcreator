@@ -8,13 +8,13 @@ Here is an example:
 
   html.add("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
-  html.add(mtcars)
   html.add(
     barplot,
     table(mtcars$vs, mtcars$gear),
     main="Car Distribution by Gears and VS",
     col=c("darkblue","red")
   )
+  html.add(mtcars)
   html.add("</html></body>")
   # save the html to a file
   outFile <- tempfile("plot", fileext = ".html")
