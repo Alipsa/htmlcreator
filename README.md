@@ -5,16 +5,10 @@ This package provides a simple way to create html content.
 Here is an example:
 ```r
   library('se.alipsa.renjin:htmlcontent')
-  # create a data.frame:
-  employee <- c('John Doe','Peter Smith','Jane Doe')
-  salary <- c(21000, 23400, 26800)
-  startdate <- as.Date(c('2013-11-1','2018-3-25','2017-3-14'))
-  endDate <- as.POSIXct(c('2020-01-10 00:00:00', '2020-04-12 12:10:13', '2020-10-06 10:00:05'), tz='UTC' )
-  df <- data.frame(employee, salary, startdate, endDate)
 
   html.add("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
-  html.add(df)
+  html.add(mtcars)
   html.add(
     barplot,
     table(mtcars$vs, mtcars$gear),
