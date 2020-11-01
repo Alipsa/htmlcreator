@@ -5,14 +5,34 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>se.alipsa.renjin</groupId>
-  <artifactId>htmlcontent</artifactId>
+  <groupId>se.alipsa</groupId>
+  <artifactId>renjin-htmlcontent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <!-- general information about your package -->
-  <name>htmlcontent</name>
-  <description>TODO: write a short description here</description>
+  <name>renjin htmlcontent</name>
+  <description>Renjin R package to create html</description>
+  <url>https://github.com/perNyfelt/htmlcontent</url>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://raw.githubusercontent.com/perNyfelt/htmlcontent/main/LICENSE</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Per Nyfelt</name>
+      <email>per.nyfelt@alipsa.se</email>
+      <organization>Alipsa HB</organization>
+      <organizationUrl>http://www.alipsa.se</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:https://github.com/perNyfelt/htmlcontent.git</connection>
+    <developerConnection>scm:git:git@github.com:perNyfelt/htmlcontent.git</developerConnection>
+    <url>https://github.com/perNyfelt/htmlcontent/tree/main</url>
+  </scm>
+
 
   <properties>
     <renjin.version>3.5-beta76</renjin.version>
@@ -128,7 +148,7 @@
         <artifactId>renjin-test-maven-plugin</artifactId>
         <version>1.3.4</version>
         <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
+          <testFailureIgnore>false</testFailureIgnore>
         </configuration>
         <executions>
           <execution>
@@ -186,6 +206,32 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <!-- the site plugin will create formatting stuff e.g. css etc. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -205,11 +251,50 @@
       </plugin>
     </plugins>
   </build>
-  <!-- TODO: uncomment this and add the real url if you have a repository to deploy to -->
-  <!--distributionManagement>
+
+  <distributionManagement>
     <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://some.server:8081/nexus/content/repositories/snapshots/</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
-  </distributionManagement-->
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

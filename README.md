@@ -1,5 +1,5 @@
 # htmlcontent
-R package to create html for Renjin 
+Renjin R package to create html  
 
 This package provides a simple way to create html content.
 Here is an example:
