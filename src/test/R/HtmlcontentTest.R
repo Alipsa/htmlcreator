@@ -1,5 +1,5 @@
 library('hamcrest')
-library('se.alipsa:renjin-htmlcontent')
+library('se.alipsa:renjin-html')
 
 test.htmlText <- function() {
   

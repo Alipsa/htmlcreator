@@ -1,10 +1,10 @@
-# htmlcontent
+# Renjin html
 Renjin R package to create html  
 
 This package provides a simple way to create html content.
 Here is an example:
 ```r
-  library('se.alipsa.renjin:htmlcontent')
+  library('se.alipsa:renjin-html')
 
   html.add("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
@@ -24,8 +24,8 @@ Here is an example:
 To be able to do this, add the dependency to your pom.xml as follows:
 ```xml
 <dependency>
-  <groupId>se.alipsa.renjin</groupId>
-  <artifactId>htmlcontent</artifactId>
+  <groupId>se.alipsa</groupId>
+  <artifactId>renjin-html</artifactId>
   <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
