@@ -41,9 +41,16 @@ checkVar <- function() {
 setGeneric("html.add", function(x, ...) standardGeneric("html.add"))
 
 setMethod('html.add', signature("character"),
-  function(x, ...) {
+  function(x) {
     checkVar()
-    html$add(x, ...)
+    html$add(x)
+  }
+)
+
+setMethod('html.add', signature("numeric"),
+  function(x) {
+    checkVar()
+    html$add(as.character(x))
   }
 )
 
@@ -54,6 +61,9 @@ setMethod('html.add', signature("data.frame"),
   }
 )
 
+# arguments that the generic dispatches on can’t be lazily evaluated (http://adv-r.had.co.nz/S4.html)
+# so we work around this by separating the function and its arguments, otherwise the signature to match on
+# would be the result of the plot/hist call e.g. numeric which is not what we want
 setMethod('html.add', signature("function"),
   function(x, ...) {
     checkVar()

@@ -29,8 +29,10 @@ test.dataFrameToTable <- function() {
 
   htm <- Html$new()
   htm$add("<html><body>")
+  htm$add(42)
   htm$add(html.table(df))
   htm$add("</html></body>")
+  assertThat(htm$getContent(), equalTo("<html><body>42<table><thead><tr><th>employee</th><th>salary</th><th>startdate</th><th>endDate</th></tr></thead><tbody><tr><td>John Doe</td><td>21000</td><td>2013-11-01</td><td>2020-01-10</td></tr><tr><td>Peter Smith</td><td>23400</td><td>2018-03-25</td><td>2020-04-12 12:10:13</td></tr><tr><td>Jane Doe</td><td>26800</td><td>2017-03-14</td><td>2020-10-06 10:00:05</td></tr></tbody></table></html></body>"))
 
   html.clear()
   html.add("<html><body>")
@@ -38,7 +40,6 @@ test.dataFrameToTable <- function() {
   html.add("</html></body>")
 
   assertThat(html$getContent(), equalTo("<html><body><table><thead><tr><th>employee</th><th>salary</th><th>startdate</th><th>endDate</th></tr></thead><tbody><tr><td>John Doe</td><td>21000</td><td>2013-11-01</td><td>2020-01-10</td></tr><tr><td>Peter Smith</td><td>23400</td><td>2018-03-25</td><td>2020-04-12 12:10:13</td></tr><tr><td>Jane Doe</td><td>26800</td><td>2017-03-14</td><td>2020-10-06 10:00:05</td></tr></tbody></table></html></body>"))
-  assertThat(html$getContent(), equalTo(htm$getContent()))
 }
 
 test.plotToImage <- function() {
