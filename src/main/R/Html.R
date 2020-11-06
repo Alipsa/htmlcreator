@@ -61,6 +61,13 @@ setMethod('html.add', signature("data.frame"),
   }
 )
 
+setMethod('html.add', signature("matrix"),
+  function(x, ...) {
+    checkVar()
+    html$add(html.table(as.data.frame(x), ...))
+  }
+)
+
 # arguments that the generic dispatches on can’t be lazily evaluated (http://adv-r.had.co.nz/S4.html)
 # so we work around this by separating the function and its arguments, otherwise the signature to match on
 # would be the result of the plot/hist call e.g. numeric which is not what we want
@@ -93,4 +100,9 @@ setMethod('format', signature("Html"),
     x$getContent()
   }
 )
+
+html.content <- function() {
+  checkVar()
+  html$getContent()
+}
 

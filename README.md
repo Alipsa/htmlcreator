@@ -18,7 +18,7 @@ Here is an example:
   html.add("</html></body>")
   # save the html to a file
   outFile <- tempfile("plot", fileext = ".html")
-  write(html$getContent(), outFile)
+  write(html.content(), outFile)
   print(paste("Wrote", outFile))
 ```
 To be able to do this, add the dependency to your pom.xml as follows:

@@ -9,6 +9,7 @@ export(as.character.Html)
 export(html.table)
 export(html.img)
 export(html.imgFile)
+export(html.content)
 
 exportClasses(Html)
 
