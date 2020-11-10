@@ -6,11 +6,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>se.alipsa</groupId>
-  <artifactId>renjin-html</artifactId>
+  <artifactId>htmlcreator</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>renjin html content creator</name>
+  <name>Renjin html content creator</name>
   <description>Renjin R package to create html</description>
   <url>https://github.com/perNyfelt/htmlcontent</url>
   <licenses>
