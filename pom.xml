@@ -7,16 +7,16 @@
 
   <groupId>se.alipsa</groupId>
   <artifactId>htmlcreator</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Renjin html content creator</name>
   <description>Renjin R package to create html</description>
-  <url>https://github.com/perNyfelt/htmlcontent</url>
+  <url>https://github.com/perNyfelt/htmlcreator</url>
   <licenses>
     <license>
       <name>MIT License</name>
-      <url>https://raw.githubusercontent.com/perNyfelt/htmlcontent/main/LICENSE</url>
+      <url>https://raw.githubusercontent.com/perNyfelt/htmlcreator/main/LICENSE</url>
     </license>
   </licenses>
   <developers>
@@ -28,9 +28,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:https://github.com/perNyfelt/htmlcontent.git</connection>
-    <developerConnection>scm:git:git@github.com:perNyfelt/htmlcontent.git</developerConnection>
-    <url>https://github.com/perNyfelt/htmlcontent/tree/main</url>
+    <connection>scm:git:https://github.com/perNyfelt/htmlcreator.git</connection>
+    <developerConnection>scm:git:git@github.com:perNyfelt/htmlcreator.git</developerConnection>
+    <url>https://github.com/perNyfelt/htmlcreator/tree/main</url>
   </scm>
 
 
