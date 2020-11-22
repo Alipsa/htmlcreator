@@ -11,13 +11,32 @@ Html <- setRefClass(
        content <<- ""
     },
     
-    add = function(htmlString) {
+    add = function(prime, ...) {
+      klass <- class(prime)
+      if (klass == "function") {
+        htmlString <- html.img(prime, ...)
+      } else if (klass == "data.frame") {
+        htmlString <- html.table(prime, ...)
+      } else if (klass == "matrix") {
+        htmlString <- html.table(as.data.frame(x), ...)
+      } else {
+        htmlString <- paste0(as.character(prime), collapse = "")
+      }
       content <<- paste0(content, htmlString)
+      invisible(.self)
+    },
+
+    addImage = function(fileName) {
+      if(!file.exists(fileName)) {
+        stop(paste("File", fileName, "does not exist"))
+      }
+      content <<- paste0(content, html.imgFile(fileName))
       invisible(.self)
     },
 
     clear = function() {
       content <<- ""
+      invisible(.self)
     },
     
     getContent = function() {
@@ -50,21 +69,21 @@ setMethod('html.add', signature("character"),
 setMethod('html.add', signature("numeric"),
   function(x) {
     checkVar()
-    html$add(as.character(x))
+    html$add(x)
   }
 )
 
 setMethod('html.add', signature("data.frame"),
   function(x, ...) {
     checkVar()
-    html$add(html.table(x, ...))
+    html$add(x, ...)
   }
 )
 
 setMethod('html.add', signature("matrix"),
   function(x, ...) {
     checkVar()
-    html$add(html.table(as.data.frame(x), ...))
+    html$add(x, ...)
   }
 )
 
@@ -74,7 +93,7 @@ setMethod('html.add', signature("matrix"),
 setMethod('html.add', signature("function"),
   function(x, ...) {
     checkVar()
-    html$add(html.img(x, ...))
+    html$add(x, ...)
   }
 )
 

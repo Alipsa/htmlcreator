@@ -2,7 +2,7 @@ library('hamcrest')
 library('se.alipsa:htmlcreator')
 
 test.htmlText <- function() {
-  
+
   html.clear()
   html.add("<html><body>")
   html.add("<div>Hello</div")
