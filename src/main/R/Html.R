@@ -18,7 +18,7 @@ Html <- setRefClass(
       } else if (klass == "data.frame") {
         htmlString <- html.table(prime, ...)
       } else if (klass == "matrix") {
-        htmlString <- html.table(as.data.frame(x), ...)
+        htmlString <- html.table(as.data.frame(prime), ...)
       } else {
         htmlString <- paste0(as.character(prime), collapse = "")
       }

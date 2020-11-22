@@ -58,3 +58,17 @@ test.plotToImage <- function() {
   assertThat(nchar(html$getContent()), equalTo(5762))
 
 }
+
+test.matrix <- function() {
+  html.clear()
+  html.add("<html><body>")
+  html.add("<h2>PlantGrowth weight</h2>")
+  html.add(
+    hist,
+    PlantGrowth$weight
+  )
+  html.add(format(summary(PlantGrowth)))
+
+  html.add("</body></html>")
+  assertThat(nchar(html$getContent()), equalTo(7067))
+}
