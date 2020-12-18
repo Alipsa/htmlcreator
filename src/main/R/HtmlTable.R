@@ -1,10 +1,7 @@
 library('se.alipsa:xmlr')
 
-html.table <- function(df, id = NA) {
-  table <- Element$new("table")
-  if (!is.na(id)) {
-    table$setAttribute("id", id)
-  }
+html.table <- function(df, htmlattr=NA) {
+  table <- createTag("table", htmlattr)
 
   thead <- Element$new("thead")
   table$addContent(thead)

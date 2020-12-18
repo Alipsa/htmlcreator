@@ -57,6 +57,22 @@ checkVar <- function() {
   }
 }
 
+createTag <- function(tagName, htmlattr=NA) {
+  tag <- Element$new(tagName)
+  if (!is.na(htmlattr) & is.list(htmlattr)) {
+    for (idx in 1:length(htmlattr)) {
+      name <- names(htmlattr)[idx]
+      val <- as.character(htmlattr[idx])
+      if (trimws(name) == "") {
+        warning(paste("skipping due to invalid parameter name for", val))
+      } else {
+        tag$setAttribute(name, val)
+      }
+    }
+  }
+  return(tag)
+}
+
 setGeneric("html.add", function(x, ...) standardGeneric("html.add"))
 
 setMethod('html.add', signature("character"),

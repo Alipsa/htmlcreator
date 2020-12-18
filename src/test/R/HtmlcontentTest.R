@@ -24,7 +24,8 @@ test.dataFrameToTable <- function() {
   startdate <- as.Date(c('2013-11-1','2018-3-25','2017-3-14'))
   endDate <- as.POSIXct(c('2020-01-10 00:00:00', '2020-04-12 12:10:13', '2020-10-06 10:00:05'), tz='UTC' )
   df <- data.frame(employee, salary, startdate, endDate)
-  content <- html.table(df, "myTable")
+  ## hidden will not be added as an attribute since it is not named
+  content <- html.table(df, list(id="myTable", "hidden"))
   assertThat(content, equalTo("<table id='myTable'><thead><tr><th>employee</th><th>salary</th><th>startdate</th><th>endDate</th></tr></thead><tbody><tr><td>John Doe</td><td>21000</td><td>2013-11-01</td><td>2020-01-10</td></tr><tr><td>Peter Smith</td><td>23400</td><td>2018-03-25</td><td>2020-04-12 12:10:13</td></tr><tr><td>Jane Doe</td><td>26800</td><td>2017-03-14</td><td>2020-10-06 10:00:05</td></tr></tbody></table>"))
 
   htm <- Html$new()
@@ -55,7 +56,7 @@ test.plotToImage <- function() {
   #outFile <- tempfile("plot", fileext = ".html")
   #write(html$getContent(), outFile)
   #print(paste("Wrote", outFile))
-  assertThat(nchar(html$getContent()), equalTo(5762))
+  assertThat(nchar(html$getContent()), equalTo(5755))
 
 }
 
@@ -70,5 +71,5 @@ test.matrix <- function() {
   html.add(format(summary(PlantGrowth)))
 
   html.add("</body></html>")
-  assertThat(nchar(html$getContent()), equalTo(7067))
+  assertThat(nchar(html$getContent()), equalTo(7060))
 }

@@ -1,15 +1,32 @@
+library('se.alipsa:xmlr')
 
-html.img <- function(plotFunction, ...) {
-  outFile <- tempfile("plot", fileext = ".png")
-  png(outFile)
-  plotFunction(...)
-  dev.off()
-  img <- FileEncoder$contentAsBase64(outFile)
-  file.remove(outFile)
-  paste0("<img src='", img, "' alt='plot' />")
+
+createImgTag <- function(imgContent, htmlattr=NA) {
+  img <- createTag("img", htmlattr)
+  img$setAttribute("src", imgContent)
+  return(img)
 }
 
-html.imgFile <- function(fileName) {
-  img <- FileEncoder$contentAsBase64(fileName)
-  paste0("<img src='", img, "' alt='plot' />")
+html.img <- function(plotFunction, ..., htmlattr=NA) {
+  outFile <- tempfile("plot", fileext = ".png")
+  png(outFile)
+  # alt
+  # height: exists both is img and barplot
+  plotFunction(...)
+  dev.off()
+  imgContent <- FileEncoder$contentAsBase64(outFile)
+  file.remove(outFile)
+  img <- createImgTag(imgContent, htmlattr)
+
+  #paste0("<img src='", img, "' alt='plot' />")
+
+  return(img$toString())
+}
+
+html.imgFile <- function(fileName, htmlattr=NA) {
+  imgContent <- FileEncoder$contentAsBase64(fileName)
+  #paste0("<img src='", img, "' alt='plot' />")
+  img <- createImgTag(imgContent, htmlattr)
+
+  return(img$toString())
 }

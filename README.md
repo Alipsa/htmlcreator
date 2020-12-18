@@ -37,6 +37,21 @@ or a plot function (which converts the plot into an img tag)
 Besides this, there is the html.clear() function which resets the 
 underlying html object (clears the content).
 
+html attributes can be set by passing setting the parameter `htmlattr` to a list of attribute, e.g:
+```r
+# add id anc class to a table:
+html.add(mtcars, htmlattr=list(id="cardetails", class="table table-striped"))
+
+# add alt attribute to an img:
+html.add(
+  barplot,
+  table(mtcars$vs, mtcars$gear),
+  main="Car Distribution by Gears and VS",
+  col=c("darkblue","red"),
+  htmlattr = list(alt="an mtcars plot")
+)
+```
+
 It is also possible to use the underlying reference class (Html) and the specific
 html creating methods directly. The underlying html creating methods are:
 - html.table - converts a data.frame to a table
