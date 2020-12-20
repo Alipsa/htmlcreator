@@ -26,7 +26,7 @@ To be able to do this, add the dependency to your pom.xml as follows:
 <dependency>
   <groupId>se.alipsa</groupId>
   <artifactId>htmlcreator</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.1</version>
 </dependency>
 ```
 As you can see, the mail method is the overloaded `html.add`. It can take
