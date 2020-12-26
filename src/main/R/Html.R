@@ -14,7 +14,7 @@ Html <- setRefClass(
     add = function(prime, ...) {
       klass <- class(prime)
       if (klass == "function") {
-        htmlString <- html.img(prime, ...)
+        htmlString <- html.imgPlot(prime, ...)
       } else if (klass == "data.frame") {
         htmlString <- html.table(prime, ...)
       } else if (klass == "matrix") {
@@ -26,7 +26,7 @@ Html <- setRefClass(
       invisible(.self)
     },
 
-    addImage = function(fileName) {
+    addImageFile = function(fileName) {
       if(!file.exists(fileName)) {
         stop(paste("File", fileName, "does not exist"))
       }
@@ -59,7 +59,7 @@ checkVar <- function() {
 
 createTag <- function(tagName, htmlattr=NA) {
   tag <- Element$new(tagName)
-  if (!is.na(htmlattr) & is.list(htmlattr)) {
+  if (is.list(htmlattr)) {
     for (idx in 1:length(htmlattr)) {
       name <- names(htmlattr)[idx]
       val <- as.character(htmlattr[idx])

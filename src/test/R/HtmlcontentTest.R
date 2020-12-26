@@ -57,7 +57,12 @@ test.plotToImage <- function() {
   #write(html$getContent(), outFile)
   #print(paste("Wrote", outFile))
   assertThat(nchar(html$getContent()), equalTo(5755))
+}
 
+test.imgUrl <- function() {
+  html.clear()
+  html.add(html.imgUrl("/common/style.css", list("id" = "mystyle", "class" = "image")))
+  assertThat(html$getContent(), equalTo("<img id='mystyle' class='image' src='/common/style.css'></img>"))
 }
 
 test.matrix <- function() {

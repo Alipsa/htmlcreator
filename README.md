@@ -26,7 +26,7 @@ To be able to do this, add the dependency to your pom.xml as follows:
 <dependency>
   <groupId>se.alipsa</groupId>
   <artifactId>htmlcreator</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
 </dependency>
 ```
 As you can see, the mail method is the overloaded `html.add`. It can take
@@ -59,5 +59,6 @@ html.add(
 It is also possible to use the underlying reference class (Html) and the specific
 html creating methods directly. The underlying html creating methods are:
 - html.table - converts a data.frame to a table
-- html.img - converts a plot to an img
-- html.imgFile - converts a file to an img
+- html.imgPlot - converts a plot to an img tag
+- html.imgFile - converts a file to an img tag
+- html.imgUrl - creates an img tag

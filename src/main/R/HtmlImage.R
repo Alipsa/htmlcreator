@@ -7,7 +7,7 @@ createImgTag <- function(imgContent, htmlattr=NA) {
   return(img)
 }
 
-html.img <- function(plotFunction, ..., htmlattr=NA) {
+html.imgPlot <- function(plotFunction, ..., htmlattr=NA) {
   outFile <- tempfile("plot", fileext = ".png")
   png(outFile)
   # alt
@@ -28,5 +28,10 @@ html.imgFile <- function(fileName, htmlattr=NA) {
   #paste0("<img src='", img, "' alt='plot' />")
   img <- createImgTag(imgContent, htmlattr)
 
+  return(img$toString())
+}
+
+html.imgUrl <- function(url, htmlattr=NA) {
+  img <- createImgTag(url, htmlattr)
   return(img$toString())
 }
