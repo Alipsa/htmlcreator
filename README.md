@@ -30,16 +30,20 @@ To be able to do this, add the dependency to your pom.xml as follows:
 </dependency>
 ```
 As you can see, the mail method is the overloaded `html.add`. It can take
-strings as parameters (which are treated as raw html),
-a data.frame (which is converted into a html table), 
-or a plot function (which converts the plot into an img tag)
+1. strings (charvectors) as parameters (which are treated as raw html),
+1. a data.frame (which is converted into a html table), 
+or 
+1. a plot function (which converts the plot into an img tag). Notice that the plot function is passed in separately from 
+its arguments, this to allow the plot function to be executed by the html.add method (which converts the result of the plot to an image and
+base64 encodes it into a string which is then made part of the img tag) rather than executed before the function is called which
+would have been the result of passing the plotfunction and its arguments together to html.add.
 
 Besides this, there is the html.clear() function which resets the 
 underlying html object (clears the content).
 
 html attributes can be set by passing setting the parameter `htmlattr` to a list of attribute, e.g:
 ```r
-# add id anc class to a table:
+# add id and class to a table:
 html.add(mtcars, htmlattr=list(id="cardetails", class="table table-striped"))
 
 # add alt attribute to an img:
