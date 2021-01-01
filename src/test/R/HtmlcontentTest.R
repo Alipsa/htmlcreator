@@ -9,11 +9,11 @@ test.htmlText <- function() {
   html.add("</html></body>")
 
   expected <- "<html><body><div>Hello</div</html></body>"
-  assertThat(html$getContent(), equalTo(expected))
+  assertThat(html.content(), equalTo(expected))
 
   html.clear()
   html.add("<html><body>")$add("<div>Hello</div")$add("</html></body>")
-  assertThat(html$getContent(), equalTo(expected))
+  assertThat(html.content(), equalTo(expected))
 }
 
 
@@ -40,7 +40,7 @@ test.dataFrameToTable <- function() {
   html.add(df)
   html.add("</html></body>")
 
-  assertThat(html$getContent(), equalTo("<html><body><table><thead><tr><th>employee</th><th>salary</th><th>startdate</th><th>endDate</th></tr></thead><tbody><tr><td>John Doe</td><td>21000</td><td>2013-11-01</td><td>2020-01-10</td></tr><tr><td>Peter Smith</td><td>23400</td><td>2018-03-25</td><td>2020-04-12 12:10:13</td></tr><tr><td>Jane Doe</td><td>26800</td><td>2017-03-14</td><td>2020-10-06 10:00:05</td></tr></tbody></table></html></body>"))
+  assertThat(html.content(), equalTo("<html><body><table><thead><tr><th>employee</th><th>salary</th><th>startdate</th><th>endDate</th></tr></thead><tbody><tr><td>John Doe</td><td>21000</td><td>2013-11-01</td><td>2020-01-10</td></tr><tr><td>Peter Smith</td><td>23400</td><td>2018-03-25</td><td>2020-04-12 12:10:13</td></tr><tr><td>Jane Doe</td><td>26800</td><td>2017-03-14</td><td>2020-10-06 10:00:05</td></tr></tbody></table></html></body>"))
 }
 
 test.plotToImage <- function() {
@@ -56,13 +56,13 @@ test.plotToImage <- function() {
   #outFile <- tempfile("plot", fileext = ".html")
   #write(html$getContent(), outFile)
   #print(paste("Wrote", outFile))
-  assertThat(nchar(html$getContent()), equalTo(5755))
+  assertThat(nchar(html.content()), equalTo(5755))
 }
 
 test.imgUrl <- function() {
   html.clear()
   html.add(html.imgUrl("/common/style.css", list("id" = "mystyle", "class" = "image")))
-  assertThat(html$getContent(), equalTo("<img id='mystyle' class='image' src='/common/style.css'></img>"))
+  assertThat(html.content(), equalTo("<img id='mystyle' class='image' src='/common/style.css'></img>"))
 }
 
 test.matrix <- function() {
@@ -76,5 +76,5 @@ test.matrix <- function() {
   html.add(format(summary(PlantGrowth)))
 
   html.add("</body></html>")
-  assertThat(nchar(html$getContent()), equalTo(7060))
+  assertThat(nchar(html.content()), equalTo(7060))
 }

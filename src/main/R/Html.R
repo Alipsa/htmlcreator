@@ -51,9 +51,12 @@ Html <- setRefClass(
 )
 
 checkVar <- function() {
-  if (!exists("html")) {
-    html <- Html$new()
-    assign("html", html, envir = .GlobalEnv)
+  if (!exists("htmlcreatorEnv", mode="environment")) {
+    htmlcreatorEnv <- new.env()
+    assign("htmlcreatorEnv", htmlcreatorEnv, envir = .GlobalEnv)
+  }
+  if (!exists("html", envir = htmlcreatorEnv)) {
+    htmlcreatorEnv$html <- Html$new()
   }
 }
 
@@ -78,28 +81,28 @@ setGeneric("html.add", function(x, ...) standardGeneric("html.add"))
 setMethod('html.add', signature("character"),
   function(x) {
     checkVar()
-    html$add(x)
+    htmlcreatorEnv$html$add(x)
   }
 )
 
 setMethod('html.add', signature("numeric"),
   function(x) {
     checkVar()
-    html$add(x)
+    htmlcreatorEnv$html$add(x)
   }
 )
 
 setMethod('html.add', signature("data.frame"),
   function(x, ...) {
     checkVar()
-    html$add(x, ...)
+    htmlcreatorEnv$html$add(x, ...)
   }
 )
 
 setMethod('html.add', signature("matrix"),
   function(x, ...) {
     checkVar()
-    html$add(x, ...)
+    htmlcreatorEnv$html$add(x, ...)
   }
 )
 
@@ -109,13 +112,13 @@ setMethod('html.add', signature("matrix"),
 setMethod('html.add', signature("function"),
   function(x, ...) {
     checkVar()
-    html$add(x, ...)
+    htmlcreatorEnv$html$add(x, ...)
   }
 )
 
 html.clear <- function() {
-  html <- Html$new()
-  assign("html", html, envir = .GlobalEnv)
+  checkVar()
+  htmlcreatorEnv$html <- Html$new()
 }
 
 setMethod('as.vector', signature("Html"),
@@ -138,6 +141,6 @@ setMethod('format', signature("Html"),
 
 html.content <- function() {
   checkVar()
-  html$getContent()
+  htmlcreatorEnv$html$getContent()
 }
 
