@@ -9,6 +9,6 @@ public class FileEncoder {
 
   public static String contentAsBase64(String fullFileName) throws IOException {
     byte[] content = Files.readAllBytes(Paths.get(fullFileName));
-    return "data:image/png;base64, " + Base64.getEncoder().encodeToString(content);
+    return "data:image/png;base64," + Base64.getEncoder().encodeToString(content);
   }
 }

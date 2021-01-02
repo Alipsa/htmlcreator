@@ -62,3 +62,17 @@ html creating methods directly. The underlying html creating methods are:
 - html.imgPlot - converts a plot to an img tag
 - html.imgFile - converts a file to an img tag
 - html.imgUrl - creates an img tag
+
+# Version history
+
+## 1.3
+- use a dedicated env to avoid accidental overwrites
+- Remove space in base 64 file encoding
+
+## 1.2
+- Fixes to img handling, rename internal functions for clarity
+## 1.1
+- bugfix for matrix's
+- add ability to add element attributes (e.g class, id etc)
+
+## 1.0 initial release

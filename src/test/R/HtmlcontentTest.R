@@ -56,7 +56,7 @@ test.plotToImage <- function() {
   #outFile <- tempfile("plot", fileext = ".html")
   #write(html$getContent(), outFile)
   #print(paste("Wrote", outFile))
-  assertThat(nchar(html.content()), equalTo(5755))
+  assertThat(nchar(html.content()), equalTo(5754))
 }
 
 test.imgUrl <- function() {
@@ -76,5 +76,5 @@ test.matrix <- function() {
   html.add(format(summary(PlantGrowth)))
 
   html.add("</body></html>")
-  assertThat(nchar(html.content()), equalTo(7060))
+  assertThat(nchar(html.content()), equalTo(7059))
 }
