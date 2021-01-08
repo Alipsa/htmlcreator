@@ -67,10 +67,11 @@ html creating methods directly. The underlying html creating methods are:
 
 ## 1.3
 - use a dedicated env to avoid accidental overwrites
-- Remove space in base 64 file encoding
+- Remove space in base 64 file encoding (no space works in all browsers whereas the space caused problems in (at least) Firefox)
 
 ## 1.2
 - Fixes to img handling, rename internal functions for clarity
+
 ## 1.1
 - bugfix for matrix's
 - add ability to add element attributes (e.g class, id etc)
