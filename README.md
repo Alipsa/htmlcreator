@@ -65,6 +65,8 @@ html creating methods directly. The underlying html creating methods are:
 
 # Version history
 
+## 1.4
+
 ## 1.3
 - use a dedicated env to avoid accidental overwrites
 - Remove space in base 64 file encoding (no space works in all browsers whereas the space caused problems in (at least) Firefox)
