@@ -44,19 +44,16 @@ test.dataFrameToTable <- function() {
 }
 
 test.plotToImage <- function() {
-  html.clear()
-  html.add("<html><body>")
-  html.add(
+  html.new(
     barplot,
     table(mtcars$vs, mtcars$gear),
     main="Car Distribution by Gears and VS",
     col=c("darkblue","red")
   )
-  html.add("</html></body>")
-  #outFile <- tempfile("plot", fileext = ".html")
-  #write(html$getContent(), outFile)
+  outFile <- paste0(getwd(), "test.plotToImage.html")
+  write(html.content(), outFile)
   #print(paste("Wrote", outFile))
-  assertThat(nchar(html.content()), equalTo(5754))
+  assertThat(nchar(html.content()), equalTo(12356))
 }
 
 test.imgUrl <- function() {
@@ -67,14 +64,13 @@ test.imgUrl <- function() {
 
 test.matrix <- function() {
   html.clear()
-  html.add("<html><body>")
   html.add("<h2>PlantGrowth weight</h2>")
   html.add(
     hist,
     PlantGrowth$weight
   )
   html.add(format(summary(PlantGrowth)))
-
-  html.add("</body></html>")
-  assertThat(nchar(html.content()), equalTo(7059))
+  outFile <- paste0(getwd(), "test.matrix.html")
+  write(html.content(), outFile)
+  assertThat(nchar(html.content()), equalTo(12409))
 }
