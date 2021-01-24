@@ -69,6 +69,7 @@ html creating methods directly. The underlying html creating methods are:
 
 ## 1.4
 - add html.new(...) as an alias for html.clear() followed by html.add(...)
+- fix broken tests
 
 ## 1.3
 - use a dedicated env to avoid accidental overwrites
