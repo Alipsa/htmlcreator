@@ -5,6 +5,7 @@
 export(Html)
 export(html.add)
 export(html.clear)
+export(html.new)
 export(as.character.Html)
 export(html.table)
 export(html.imgPlot)

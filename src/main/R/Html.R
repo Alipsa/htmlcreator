@@ -121,6 +121,11 @@ html.clear <- function() {
   .htmlcreatorEnv$html <- Html$new()
 }
 
+html.new <- function(x, ...) {
+  html.clear()
+  html.add(x, ...)
+}
+
 setMethod('as.vector', signature("Html"),
   function(x) {
     x$getContent()

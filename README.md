@@ -6,7 +6,7 @@ Here is an example:
 ```r
   library('se.alipsa:htmlcreator')
 
-  html.add("<html><body>")
+  html.new("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
   html.add(
     barplot,
@@ -26,7 +26,7 @@ To be able to do this, add the dependency to your pom.xml as follows:
 <dependency>
   <groupId>se.alipsa</groupId>
   <artifactId>htmlcreator</artifactId>
-  <version>1.3</version>
+  <version>1.4</version>
 </dependency>
 ```
 As you can see, the mail method is the overloaded `html.add`. It can take
@@ -36,10 +36,12 @@ or
 1. a plot function (which converts the plot into an img tag). Notice that the plot function is passed in separately from 
 its arguments, this to allow the plot function to be executed by the html.add method (which converts the result of the plot to an image and
 base64 encodes it into a string which is then made part of the img tag) rather than executed before the function is called which
-would have been the result of passing the plotfunction and its arguments together to html.add.
+would have been the result of passing the plot function and its arguments together to html.add.
 
-Besides this, there is the html.clear() function which resets the 
-underlying html object (clears the content).
+In addition to `html.add(x,...)`, there is the `html.clear()` function which resets the 
+underlying html object (clears the content). The `html.new(x, ...)` is an alias for `html.clear()` 
+followed by `html.add(x,...)` and is a good way to start the script 
+(especially if you run multiple scripts in the same session).
 
 html attributes can be set by passing setting the parameter `htmlattr` to a list of attribute, e.g:
 ```r
@@ -66,6 +68,7 @@ html creating methods directly. The underlying html creating methods are:
 # Version history
 
 ## 1.4
+- add html.new(...) as an alias for html.clear() followed by html.add(...)
 
 ## 1.3
 - use a dedicated env to avoid accidental overwrites
