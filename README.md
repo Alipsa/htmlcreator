@@ -67,6 +67,9 @@ html creating methods directly. The underlying html creating methods are:
 
 # Version history
 
+## 1.4.1
+- upgrade maven enforcer plugin
+
 ## 1.4
 - add html.new(...) as an alias for html.clear() followed by html.add(...)
 - fix broken tests
