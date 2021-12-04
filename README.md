@@ -29,7 +29,7 @@ To be able to do this, add the dependency to your pom.xml as follows:
   <version>1.4</version>
 </dependency>
 ```
-As you can see, the mail method is the overloaded `html.add`. It can take
+As you can see, the main method is the overloaded `html.add`. It can take
 1. strings (charvectors) as parameters (which are treated as raw html),
 1. a data.frame (which is converted into a html table), 
 or 
