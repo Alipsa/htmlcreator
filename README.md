@@ -9,11 +9,8 @@ Here is an example:
   html.new("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
   html.addPlot({
-    barplot(
-        table(mtcars$vs, mtcars$gear),
-        main="Car Distribution by Gears and VS",
-        col=c("darkblue","red")
-    )
+    plot(mtcars$mpg ~ mtcars$hp, pch=23, col="orange", bg="orange", cex=1.5, lwd=2)
+    abline(h = mean(mtcars$mpg), col="green")
   })
   html.add(mtcars)
   html.add("</html></body>")
