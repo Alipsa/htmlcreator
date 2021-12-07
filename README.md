@@ -8,12 +8,13 @@ Here is an example:
 
   html.new("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
-  html.add(
-    barplot,
-    table(mtcars$vs, mtcars$gear),
-    main="Car Distribution by Gears and VS",
-    col=c("darkblue","red")
-  )
+  html.addPlot({
+    barplot(
+        table(mtcars$vs, mtcars$gear),
+        main="Car Distribution by Gears and VS",
+        col=c("darkblue","red")
+    )
+  })
   html.add(mtcars)
   html.add("</html></body>")
   # save the html to a file
@@ -31,12 +32,11 @@ To be able to do this, add the dependency to your pom.xml as follows:
 ```
 As you can see, the main method is the overloaded `html.add`. It can take
 1. strings (charvectors) as parameters (which are treated as raw html),
-1. a data.frame (which is converted into a html table), 
+2. a data.frame (which is converted into a html table), 
 or 
-1. a plot function (which converts the plot into an img tag). Notice that the plot function is passed in separately from 
-its arguments, this to allow the plot function to be executed by the html.add method (which converts the result of the plot to an image and
-base64 encodes it into a string which is then made part of the img tag) rather than executed before the function is called which
-would have been the result of passing the plot function and its arguments together to html.add.
+3. a plot function (which converts the plot into an img tag). Notice that the plot function is passed in enclosed
+with `{ }`, this to allow the plot function to be executed by the html.addPlot method (which converts the result of the plot to an image and
+base64 encodes it into a string which is then made part of the img tag) rather than executed before the function is called.
 
 In addition to `html.add(x,...)`, there is the `html.clear()` function which resets the 
 underlying html object (clears the content). The `html.new(x, ...)` is an alias for `html.clear()` 
@@ -49,12 +49,16 @@ html attributes can be set by passing setting the parameter `htmlattr` to a list
 html.add(mtcars, htmlattr=list(id="cardetails", class="table table-striped"))
 
 # add alt attribute to an img:
-html.add(
-  barplot,
-  table(mtcars$vs, mtcars$gear),
-  main="Car Distribution by Gears and VS",
-  col=c("darkblue","red"),
-  htmlattr = list(alt="an mtcars plot")
+html.addPlot({
+  plot(
+    cars,
+    main="Cars speed and dist",
+    col=c("darkblue")
+  )
+  abline(h = mean(cars$dist), col="red")
+  abline(v = mean(cars$speed), col="red")
+  },
+  htmlattr = list(alt="a cars plot")
 )
 ```
 
@@ -62,6 +66,7 @@ It is also possible to use the underlying reference class (Html) and the specifi
 html creating methods directly. The underlying html creating methods are:
 - html.table - converts a data.frame to a table
 - html.imgPlot - converts a plot to an img tag
+- html.imgPlotComplex - converts a series of plot commands enclosed with `{ }` to an img tag
 - html.imgFile - converts a file to an img tag
 - html.imgUrl - creates an img tag
 
@@ -69,6 +74,8 @@ html creating methods directly. The underlying html creating methods are:
 
 ## 1.4.1
 - upgrade maven enforcer plugin
+- Add addPlot function for better plotting capabilities
+- Make sure get content is enclosed in `<html> </html>`
 
 ## 1.4
 - add html.new(...) as an alias for html.clear() followed by html.add(...)

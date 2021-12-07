@@ -4,11 +4,13 @@
 
 export(Html)
 export(html.add)
+export(html.addPlot)
 export(html.clear)
 export(html.new)
 export(as.character.Html)
 export(html.table)
 export(html.imgPlot)
+export(html.imgPlotComplex)
 export(html.imgFile)
 export(html.imgUrl)
 export(html.content)

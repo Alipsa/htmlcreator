@@ -26,6 +26,12 @@ Html <- setRefClass(
       invisible(.self)
     },
 
+    addPlot = function(func, ...) {
+      htmlString <- html.imgPlotComplex(func, ...)
+      content <<- paste0(content, htmlString)
+      invisible(.self)
+    },
+
     addImageFile = function(fileName) {
       if(!file.exists(fileName)) {
         stop(paste("File", fileName, "does not exist"))
@@ -116,6 +122,16 @@ setMethod('html.add', signature("function"),
   }
 )
 
+html.addPlot <- function(x, ...) {
+  if (!is.call(substitute(x))) {
+    # this is not a 100% guarantee that the code plock is a plot but we want the flexibility to
+    # call ggplot2, lattice etc. so cannot do better than this check
+    stop(paste("first argument is not an anonymous code block, this does not look correct"))
+  }
+  checkVar()
+  .htmlcreatorEnv$html$addPlot(x, ...)
+}
+
 html.clear <- function() {
   checkVar()
   .htmlcreatorEnv$html <- Html$new()
@@ -146,6 +162,13 @@ setMethod('format', signature("Html"),
 
 html.content <- function() {
   checkVar()
-  .htmlcreatorEnv$html$getContent()
+  content <- .htmlcreatorEnv$html$getContent()
+  if (!startsWith(content, "<html")) {
+    content <- paste0("<html>", content)
+  }
+  if (!endsWith(content, "</html>")) {
+    content <- paste0(content, "</html>")
+  }
+  content
 }
 
