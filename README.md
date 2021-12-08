@@ -74,6 +74,8 @@ html creating methods directly. The underlying html creating methods are:
 
 # Version history
 
+## 1.4.2
+
 ## 1.4.1
 - upgrade maven enforcer plugin
 - Add addPlot function for better plotting capabilities
