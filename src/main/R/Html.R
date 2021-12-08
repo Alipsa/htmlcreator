@@ -139,7 +139,9 @@ html.clear <- function() {
 
 html.new <- function(x, ...) {
   html.clear()
-  html.add(x, ...)
+  if(! missing(x)) {
+    html.add(x, ...)
+  }
 }
 
 setMethod('as.vector', signature("Html"),

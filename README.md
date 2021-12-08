@@ -8,10 +8,15 @@ Here is an example:
 
   html.new("<html><body>")
   html.add("<h2>A Sample report with a table and an image</h2>")
-  html.addPlot({
-    plot(mtcars$mpg ~ mtcars$hp, pch=23, col="orange", bg="orange", cex=1.5, lwd=2)
-    abline(h = mean(mtcars$mpg), col="green")
-  })
+  html.addPlot(
+    {
+      plot(mtcars$mpg ~ mtcars$hp, pch=23, col="orange", bg="orange", cex=1.5, lwd=2)
+      abline(h = mean(mtcars$mpg), col="green")
+    }, 
+    width=300, 
+    height=400, 
+    htmlattr=list(alt="mtcars mpg ~ hp", id="plot1")
+  )
   html.add(mtcars)
   html.add("</html></body>")
   # save the html to a file
@@ -24,7 +29,7 @@ To be able to do this, add the dependency to your pom.xml as follows:
 <dependency>
   <groupId>se.alipsa</groupId>
   <artifactId>htmlcreator</artifactId>
-  <version>1.4</version>
+  <version>1.4.1</version>
 </dependency>
 ```
 As you can see, the main method is the overloaded `html.add`. It can take
@@ -35,12 +40,12 @@ or
 with `{ }`, this to allow the plot function to be executed by the html.addPlot method (which converts the result of the plot to an image and
 base64 encodes it into a string which is then made part of the img tag) rather than executed before the function is called.
 
-In addition to `html.add(x,...)`, there is the `html.clear()` function which resets the 
+In addition to `html.add(x,...)` and `html.addPlot(x, ...)`, there is the `html.clear()` function which resets the 
 underlying html object (clears the content). The `html.new(x, ...)` is an alias for `html.clear()` 
 followed by `html.add(x,...)` and is a good way to start the script 
 (especially if you run multiple scripts in the same session).
 
-html attributes can be set by passing setting the parameter `htmlattr` to a list of attribute, e.g:
+html attributes can be set by setting the parameter `htmlattr` to a list of attribute, e.g:
 ```r
 # add id and class to a table:
 html.add(mtcars, htmlattr=list(id="cardetails", class="table table-striped"))

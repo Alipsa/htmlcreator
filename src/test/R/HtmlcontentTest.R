@@ -63,16 +63,15 @@ test.dataFrameToTable <- function() {
 }
 
 test.plotToImage <- function() {
-  html.new(
-    barplot,
-    table(mtcars$vs, mtcars$gear),
-    main="Car Distribution by Gears and VS",
-    col=c("darkblue","red")
-  )
+  html.new()
+  html.addPlot({
+    plot(mtcars$mpg ~ mtcars$hp, pch=23, col="orange", bg="orange", cex=1.5, lwd=2)
+    abline(h = mean(mtcars$mpg), col="green")
+  }, width=300, height=400, htmlattr=list(alt="mtcars mpg ~ hp", width=450, height=250))
   outFile <- paste0(getwd(), "/test.plotToImage.html")
   write(html.content(), outFile)
   print(paste("Wrote", outFile))
-  assertThat(html.content(), str.beginsWith("<html><img src='data:image/png;base64,"))
+  assertThat(html.content(), str.beginsWith("<html><img alt='mtcars mpg ~ hp' width='450' height='250' src='data:image/png;base64,i"))
   assertThat(html.content(), str.endsWith("</img></html>"))
 
 }

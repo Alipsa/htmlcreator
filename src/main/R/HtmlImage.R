@@ -26,8 +26,6 @@ html.imgPlot <- function(plotFunction, ..., htmlattr=NA) {
 html.imgPlotComplex <- function(plotFunction, ..., htmlattr=NA) {
   outFile <- tempfile("plot", fileext = ".png")
   png(outFile, ...)
-  # alt
-  # height: exists both in img and barplot
   eval(plotFunction)
   dev.off()
   imgContent <- FileEncoder$contentAsBase64(outFile)
